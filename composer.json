@@ -1,0 +1,21 @@
+{
+    "name": "mihai-stancu/container-type",
+    "description": "A collection of container types for PHP.",
+
+    "type": "library",
+    "license": "MIT",
+
+    "authors": [
+        {
+            "name": "Mihai Stancu",
+            "email": "stancu.t.mihai@gmail.com"
+        }
+    ],
+
+    "autoload": {
+        "psr-4": {"MS\\ContainerType\\": "src"}
+    },
+
+    "require": {
+    }
+}
