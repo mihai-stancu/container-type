@@ -11,16 +11,6 @@ namespace MS\ContainerType\Interfaces;
 interface Set
 {
     /**
-     * @return bool
-     */
-    public function empty();
-
-    /**
-     * @return mixed
-     */
-    public function count();
-
-    /**
      * @param mixed $element
      *
      * @return bool
@@ -29,12 +19,15 @@ interface Set
 
     /**
      * @param mixed $element
+     *
+     * @return bool
      */
     public function add($element);
 
     /**
-     * @param mixed
      * @param mixed $element
+     *
+     * @return bool
      */
     public function remove($element);
 }

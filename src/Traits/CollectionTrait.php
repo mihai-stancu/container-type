@@ -126,7 +126,7 @@ trait CollectionTrait
      */
     public function filter($callback = null)
     {
-        $callback = $callback ?? [$this, 'valueIsEmpty'];
+        $callback = $callback ?: [$this, 'valueIsEmpty'];
         $output = clone $this;
         $output->exchangeArray([]);
 
@@ -140,19 +140,21 @@ trait CollectionTrait
     }
 
     /**
-     * @param array|\ArrayAccess[] $collections
+     * @param \ArrayAccess[] $collections,...
      *
      * @return static
      */
-    public function merge(...$collections)
+    public function merge($collections)
     {
+        $collections = func_get_args();
+
         array_unshift($collections, $this);
         foreach ($collections as &$collection) {
             $collection = (array) $collection;
         }
         unset($collection);
 
-        $merged = array_merge(...$collections);
+        $merged = call_user_func_array('array_merge', $collections);
 
         $collections = clone $this;
         $collections->exchangeArray($merged);

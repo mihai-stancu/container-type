@@ -8,6 +8,6 @@
 
 namespace MS\ContainerType\Interfaces;
 
-interface Entity extends \Serializable, \JsonSerializable
+interface Item
 {
 }

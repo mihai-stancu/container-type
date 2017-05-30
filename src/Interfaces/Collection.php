@@ -8,7 +8,7 @@
 
 namespace MS\ContainerType\Interfaces;
 
-interface Collection extends Entity, \ArrayAccess
+interface Collection extends Item
 {
     /**
      * @param string $key

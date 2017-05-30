@@ -11,26 +11,43 @@ namespace MS\ContainerType\Traits;
 trait QueueTrait
 {
     /**
-     * @param mixed $value
+     * @param mixed $items,...
+     *
+     * @return int
      */
-    public function enqueue($value)
+    public function enqueue($items)
     {
-        array_push($this, $value);
+        $args = func_get_args();
+        array_unshift($args, $this);
+
+        return call_user_func_array('array_push', $args);
     }
 
     /**
-     * @return mixed
+     * @param int $count
+     *
+     * @return mixed|mixed[]
      */
-    public function peek()
+    public function peek($count = 1)
     {
-        return reset($this);
+        if (func_num_args() === 0) {
+            return reset($this);
+        }
+
+        return array_slice($this, 0, $count);
     }
 
     /**
-     * @return mixed
+     * @param int $count
+     *
+     * @return mixed|mixed[]
      */
-    public function dequeue()
+    public function dequeue($count = 1)
     {
-        return array_shift($this);
+        if (func_num_args() === 0) {
+            return array_shift($this);
+        }
+
+        return array_splice($this, 0, $count);
     }
 }

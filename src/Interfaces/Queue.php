@@ -11,17 +11,23 @@ namespace MS\ContainerType\Interfaces;
 interface Queue
 {
     /**
-     * @param mixed $element
+     * @param mixed $items,...
+     *
+     * @return int
      */
-    public function enqueue($element);
+    public function enqueue($items);
 
     /**
-     * @return mixed
+     * @param int $count
+     *
+     * @return mixed|mixed[]
      */
-    public function peek();
+    public function peek($count = 1);
 
     /**
-     * @return mixed
+     * @param int $count
+     *
+     * @return mixed|mixed[]
      */
-    public function dequeue();
+    public function dequeue($count = 1);
 }

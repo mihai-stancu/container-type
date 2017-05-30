@@ -11,26 +11,43 @@ namespace MS\ContainerType\Traits;
 trait StackTrait
 {
     /**
-     * @param mixed $value
+     * @param mixed $items,...
+     *
+     * @return int
      */
-    public function push($value)
+    public function push($items)
     {
-        array_push($this, $value);
+        $args = func_get_args();
+        array_unshift($args, $this);
+
+        return call_user_func_array('array_push', $args);
     }
 
     /**
-     * @return mixed
+     * @param int $count
+     *
+     * @return mixed|mixed[]
      */
-    public function peek()
+    public function peek($count = 1)
     {
-        return end($this);
+        if (func_num_args() === 0) {
+            return reset($this);
+        }
+
+        return array_slice($this, -$count, $count);
     }
 
     /**
-     * @return mixed
+     * @param int $count
+     *
+     * @return mixed|mixed[]
      */
-    public function pop()
+    public function pop($count = 1)
     {
-        return array_pop($this);
+        if (func_num_args() === 0) {
+            return array_pop($this);
+        }
+
+        return array_splice($this, -$count, $count);
     }
 }

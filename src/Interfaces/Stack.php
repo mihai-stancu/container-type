@@ -11,17 +11,23 @@ namespace MS\ContainerType\Interfaces;
 interface Stack
 {
     /**
-     * @param mixed $element
+     * @param mixed $items,...
+     *
+     * @return int
      */
-    public function push($element);
+    public function push($items);
 
     /**
-     * @return mixed
+     * @param int $count
+     *
+     * @return mixed|mixed[]
      */
-    public function peek();
+    public function peek($count = 1);
 
     /**
-     * @return mixed
+     * @param int $count
+     *
+     * @return mixed|mixed[]
      */
-    public function pop();
+    public function pop($count = 1);
 }
