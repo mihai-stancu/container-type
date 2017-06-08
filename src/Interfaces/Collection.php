@@ -25,9 +25,16 @@ interface Collection extends Item
     public function get($key);
 
     /**
-     * @param string $value
+     * @param string $key
+     * @param mixed $value
      */
-    public function add($value);
+    public function add($key, $value);
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     */
+    public function replace($key, $value);
 
     /**
      * @param string $key

@@ -38,11 +38,14 @@ trait CollectionTrait
     }
 
     /**
-     * @param mixed $value
+     * @param string $key
+     * @param mixed  $value
      */
-    public function add($value)
+    public function add($key, $value)
     {
-        $this[] = $value;
+        if (!$this->has($key)) {
+            $this[$key] = $value;
+        }
     }
 
     /**
