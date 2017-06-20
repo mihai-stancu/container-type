@@ -8,6 +8,8 @@
 
 namespace MS\ContainerType\Traits;
 
+use MS\ContainerType\Interfaces\Collection;
+
 /**
  * A more flexible replacement for array_map / array_walk / array_reduce and any other callback-based processing.
  *
@@ -38,11 +40,14 @@ trait CollectionTrait
     }
 
     /**
-     * @param mixed $value
+     * @param string $key
+     * @param mixed  $value
      */
-    public function add($value)
+    public function add($key, $value)
     {
-        $this[] = $value;
+        if (!$this->has($key)) {
+            $this[$key] = $value;
+        }
     }
 
     /**
@@ -98,6 +103,22 @@ trait CollectionTrait
     }
 
     /**
+     * @return array|string[]
+     */
+    public function keys()
+    {
+        return array_keys($this->getArrayCopy());
+    }
+
+    /**
+     * @return array|mixed[]
+     */
+    public function values()
+    {
+        return array_values($this->getArrayCopy());
+    }
+
+    /**
      * @param array|string $callback
      * @param string       $output
      *
@@ -140,7 +161,7 @@ trait CollectionTrait
     }
 
     /**
-     * @param \ArrayAccess[] $collections,...
+     * @param Collection|\ArrayAccess[] $collections,...
      *
      * @return static
      */
@@ -167,7 +188,7 @@ trait CollectionTrait
      *
      * @return bool
      */
-    public function valueIsEmpty($value)
+    protected function valueIsEmpty($value)
     {
         return !empty($value);
     }
