@@ -13,12 +13,17 @@ class Each
     /** @var string */
     protected $method;
 
+    /** @var array|mixed[] */
+    protected $arguments;
+
     /**
-     * @param array|string $method
+     * @param array|string  $method
+     * @param array|mixed[] $arguments
      */
-    public function __construct($method)
+    public function __construct($method, array $arguments = [])
     {
         $this->method = $method;
+        $this->arguments = $arguments;
     }
 
     /**
@@ -29,6 +34,6 @@ class Each
      */
     public function __invoke($value, $key)
     {
-        return call_user_func([$value, $this->method]);
+        return call_user_func_array([$value, $this->method], $this->arguments);
     }
 }
