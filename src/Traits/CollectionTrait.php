@@ -165,7 +165,7 @@ trait CollectionTrait
      *
      * @return static
      */
-    public function merge($collections)
+    public function merge($collections = [])
     {
         $collections = func_get_args();
 

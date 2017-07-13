@@ -26,7 +26,7 @@ interface Collection extends Item
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      */
     public function add($key, $value);
 
@@ -38,7 +38,7 @@ interface Collection extends Item
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      */
     public function replace($key, $value);
 
