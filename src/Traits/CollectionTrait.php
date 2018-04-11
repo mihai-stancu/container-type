@@ -143,6 +143,21 @@ trait CollectionTrait
     /**
      * @param array|string $callback
      *
+     * @return mixed
+     */
+    public function reduce($callback)
+    {
+        $result = null;
+        foreach ($this as $key => $value) {
+            $result = $callback($value, $key);
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param array|string $callback
+     *
      * @return static
      */
     public function filter($callback = null)
