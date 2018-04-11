@@ -34,8 +34,9 @@ class Each
      */
     public function __invoke($value, $key)
     {
-        array_unshift($this->arguments, $value, $key);
+        $arguments = $this->arguments;
+        array_unshift($arguments, $value, $key);
 
-        return call_user_func_array([$value, $this->method], $this->arguments);
+        return call_user_func_array([$value, $this->method], $arguments);
     }
 }
